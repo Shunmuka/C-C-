@@ -1,0 +1,4 @@
+# ninja log v5
+4	368	7902946724691958	CMakeFiles/Dijkstra.dir/main.cpp.obj	73afaba2a1ed0677
+0	396	7902946724964654	CMakeFiles/Dijkstra.dir/Dijkstra.cpp.obj	ae9837a2e262b833
+396	518	7902946726157485	Dijkstra.exe	16ed2ef886283298
