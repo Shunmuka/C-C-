@@ -3,6 +3,7 @@
 #include <chrono>
 #include <string_view>
 #include <string>
+#include <limits>
 
 namespace Random{
 	inline std::mt19937 generate() {
@@ -20,19 +21,62 @@ namespace Random{
 	}
 }
 
-int getUserGuess(int i){
-	std::cout << "\nGuess #" << i << ": ";
-	int input{};
-	std::cin>>input;
+void ignoreLine(){
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+bool clearFailedExtraction(){
+	if (!std::cin){
+		if (std::cin.eof()){
+			std::exit(0);
+		}
+
+		std::cin.clear();
+		ignoreLine();
+		return true;
+	}
 	
-	return input;
+	return false;
+}
+
+int getUserGuess(int i){
+	while (true){
+		std::cout << "\nGuess #" << i << ": ";
+		int input{};
+		std::cin>>input;
+		
+		if(clearFailedExtraction()){
+			std::cout << "Oops, your input was invalid. Please enter an integer between 1 and 100\n";
+			continue;			
+		}
+		
+		ignoreLine();
+	
+		if (input < 0 || input > 100){
+			std::cout << "Oops, your input was invalid. Please enter an integer between 1 and 100\n";
+			continue;
+		}
+		
+		
+		return input;
+	}
 }
 
 char getUserOption(){
-	std::cout << "\nWould you like to play again (y/n)?";
-	char c{};
-	std::cin >> c;
-	return c;
+	while (true){
+		std::cout << "\nWould you like to play again (y/n)?";
+		char c{};
+		std::cin >> c;
+		
+		if(clearFailedExtraction()){
+			std::cout << "Oops, your input was invalid. Please enter an integer between 1 and 100\n";
+			continue;			
+		}
+		
+		ignoreLine();
+
+		return c;
+	}
 }
 
 
