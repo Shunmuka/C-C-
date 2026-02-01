@@ -9,3 +9,4 @@ CMakeCache.txt
 *.exe
 .DS_Store
 .vscode
+External/
